@@ -2,4 +2,64 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  if formdata
+  p Previous form data:
+    p #{JSON.stringify(formdata)}
+    table
+      tr
+        th Name 
+        th Email
+        th Grad Year 
+        th Food Color
+      tr
+        td placeholder
+        td placeholder
+        td placeholder
+        td placeholder
+
+  form(action='/', method='post')
+    fieldset(class='inigo')
+
+      div 
+        - var q_name = 'name'
+        // Printing before the text box
+        label(for= 'q_name') Hello! My name is
+        input(type="text", id=q_name, name=q_name) 
+        span(class='flag')
+        // Printing after the text box
+        label(for=q_name) You killed my father. Prepare to die.(Or not! &#x1F607;)
+
+      div
+        - q_name = 'email'
+        label(for=q_name) An email address (maybe mine, maybe not) is:
+        input(type='text', id=q_name, email=q_name)
+        span(class='flag')
+      
+      div(id='class', class='choice')
+        p I expect to graduate in:
+        input(type='radio', name='grad_2023', id=grad_2023)
+        label(for=grad_2023) 2023
+        input(type='radio', name='grad_2024', id=grad_2024)
+        label(for=grad_2024) 2024
+        input(type='radio', name='grad_2025', id=grad_2025)
+        label(for=grad_2025) 2025
+        input(type='radio', name='grad_2026', id=grad_2026)
+        label(for=grad_2026) 2026
+      
+      div(id='class', class='colors')
+        p I like foods of the following colors (check all that apply):
+        //- Change this from a loop to something like above cause for some reason 'each' doesnt work...
+
+        //- - var animals = {'cats': 'Cats', 'dogs': 'Dogs', 'pigs': 'Pigs', 'newts': 'Newts', 'cuddly': 'Anything cuddly'}
+        //- each prompt, animal in animals
+        input(type='checkbox',  value=plum, name='plum', id=plum)
+        label(for=plum) Plum
+        input(type='checkbox',  value=tomato, name='tomato', id=tomato)
+        label(for=tomato) Tomato
+        input(type='checkbox',  value=wheat, name='wheat', id=wheat)
+        label(for=tomato) Wheat
+        input(type='checkbox',  value=chocolate, name='chocolate', id=chocolate)
+        label(for=chocolate) Chocolate
+    
+      input(type='submit', value='Submit')
+      input(type='reset', value='Reset')
